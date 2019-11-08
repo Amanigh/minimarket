@@ -134,6 +134,8 @@ class UI {
   setCartValues(cart) {
     let total = 0;
     let itemsTotal = 0;
+    // console.log(cart);
+
     cart.map(item => {
       total += item.price * item.amount;
       itemsTotal += item.amount;
@@ -141,6 +143,8 @@ class UI {
     })
     cartTotal.innerText = parseFloat(total.toFixed(2));
     cartItems.innerText = itemsTotal;
+
+
 
   }
 
@@ -293,7 +297,12 @@ class Storage {
 
   static getCart() {
 
-    return localStorage.getItem("cart") === "undefined" ? [] : JSON.parse(localStorage.getItem("cart"))
+    if (localStorage.getItem("cart") === "undefined") {
+      return []
+    } else {
+      return JSON.parse(localStorage.getItem("cart"));
+    }
+
   }
 
 }
