@@ -12,7 +12,6 @@ const client = contentful.createClient({
 const cartBtn = document.querySelector(".cart-btn");
 const closeCartBtn = document.querySelector(".close-cart");
 const clearCartBtn = document.querySelector(".clear-cart");
-const placeOrderBtn = document.querySelector(".place-order");
 const cartDOM = document.querySelector(".cart");
 const cartOverlay = document.querySelector(".cart-overlay");
 const cartItems = document.querySelector(".cart-items");
@@ -134,8 +133,6 @@ class UI {
   setCartValues(cart) {
     let total = 0;
     let itemsTotal = 0;
-    // console.log(cart);
-
     cart.map(item => {
       total += item.price * item.amount;
       itemsTotal += item.amount;
@@ -143,8 +140,6 @@ class UI {
     })
     cartTotal.innerText = parseFloat(total.toFixed(2));
     cartItems.innerText = itemsTotal;
-
-
 
   }
 
@@ -198,10 +193,6 @@ class UI {
   cartLogic() {
     // clear cart
     clearCartBtn.addEventListener("click", () => this.clearCart());
-    placeOrderBtn.addEventListener("click", () => {
-      Notiflix.Report.Success('Thank you for your order!', `Your order number is: ${parseInt(Math.random()*1e4)}`, `OK`);
-      this.clearCart();
-    });
 
     // cart functionality
     // remove
@@ -297,12 +288,7 @@ class Storage {
 
   static getCart() {
 
-    if (localStorage.getItem("cart") === "undefined") {
-      return []
-    } else {
-      return JSON.parse(localStorage.getItem("cart"));
-    }
-
+    return localStorage.getItem("cart") === "undefined" ? [] : JSON.parse(localStorage.getItem("cart"))
   }
 
 }
