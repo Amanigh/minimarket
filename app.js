@@ -189,7 +189,7 @@ class UI {
     this.populateCart(cart);
     cartBtn.addEventListener("click", this.showCart);
     closeBtn.addEventListener("click", this.hideCart);
-    // console.log(cart);
+
 
 
   }
@@ -198,7 +198,7 @@ class UI {
     // clear cart
     clearCartBtn.addEventListener("click", () => this.clearCart());
     placeOrderBtn.addEventListener("click", () => {
-      Notiflix.Report.Success('Thank you for your order!', `Your order number is: ${parseInt(Math.random()*1e4)}`, `OK`);
+      Notiflix.Report.Success('Thank you for your order!', `Your order number: ${parseInt(Math.random()*1e4)}`, `OK`);
       this.clearCart();
     });
 
