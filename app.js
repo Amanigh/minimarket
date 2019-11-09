@@ -196,13 +196,21 @@ class UI {
   cartLogic() {
     // clear cart
     clearCartBtn.addEventListener("click", () => {
-      Notiflix.Confirm.Show('Confirmation', 'Do you really want to clear your cart?',
-        'Yes',
-        'No',
-        () => { // Yes button callback
-          this.clearCart()
-        });
+      let currentCart = Storage.getCart();
+      if (currentCart.length > 0) {
+        Notiflix.Confirm.Show('Confirmation', 'Do you really want to clear your cart?',
+          'Yes',
+          'No',
+          () => { // Yes button callback
+            this.clearCart()
+          });
+      } else {
+        Notiflix.Report.Info('Empty!', "Your cart is empty.", 'OK');
+      }
+
+
     });
+
     checkoutBtn.addEventListener("click", () => {
       let currentCart = Storage.getCart();
       if (currentCart.length > 0) {
